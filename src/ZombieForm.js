@@ -1,19 +1,19 @@
-import React, { Component } from "react"
-import Button from "@material-ui/core/Button"
-import Card from "@material-ui/core/Card"
-import TextField from "@material-ui/core/TextField"
-import MenuItem from "@material-ui/core/MenuItem"
+import React, { Component } from 'react'
+import Button from '@material-ui/core/Button'
+import Card from '@material-ui/core/Card'
+import TextField from '@material-ui/core/TextField'
+import MenuItem from '@material-ui/core/MenuItem'
 
 class ZombieForm extends Component {
   state = {
-    name: "",
-    gender: "male",
-    location: "school"
+    name: '',
+    gender: 'male',
+    location: 'school',
   }
 
   handleChange = name => event => {
     this.setState({
-      [name]: event.target.value
+      [name]: event.target.value,
     })
   }
 
@@ -26,13 +26,13 @@ class ZombieForm extends Component {
             ev.preventDefault()
           }}
           style={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
             width: 200,
             height: 600,
-            padding: "32px 48px",
-            margin: 64
+            padding: '32px 48px',
+            margin: 64,
           }}
         >
           <TextField
@@ -41,7 +41,7 @@ class ZombieForm extends Component {
             fullWidth
             label="Zombie Name"
             value={this.state.name}
-            onChange={this.handleChange("name")}
+            onChange={this.handleChange('name')}
             style={{ margin: 8 }}
             placeholder="Steve"
           />
@@ -52,7 +52,7 @@ class ZombieForm extends Component {
             select
             label="Zombie Gender"
             value={this.state.gender}
-            onChange={this.handleChange("gender")}
+            onChange={this.handleChange('gender')}
             style={{ margin: 8 }}
           >
             <MenuItem value="male">Male</MenuItem>
@@ -65,7 +65,7 @@ class ZombieForm extends Component {
             fullWidth
             label="Zombie Location"
             value={this.state.location}
-            onChange={this.handleChange("location")}
+            onChange={this.handleChange('location')}
             style={{ margin: 8 }}
           >
             <MenuItem value="school">School</MenuItem>
@@ -75,13 +75,14 @@ class ZombieForm extends Component {
           <Button
             variant="contained"
             color="primary"
-            onClick={() =>
+            onClick={() => {
               window.fire.createZombie(
                 this.state.location,
                 this.state.name,
                 this.state.gender
               )
-            }
+              this.setState({ name: '' })
+            }}
           >
             Store Zombie
           </Button>

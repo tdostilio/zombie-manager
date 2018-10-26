@@ -34,7 +34,7 @@ class ActionDialog extends Component {
       locations.splice(indexOfcurrent, 1)
       return locations
     }
-    //otherwise return locations array
+    //otherwise return original locations array
     return locations
   }
 
