@@ -9,7 +9,7 @@ class ZombieList extends Component {
   render() {
     return (
       <>
-        <List component="nav">
+        <List component="nav" className={"zombie-form"}>
           <ListItem>
             <ListItemText primary={this.props.location} />
           </ListItem>

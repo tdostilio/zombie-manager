@@ -21,11 +21,12 @@ class App extends Component {
       //when there is a change to the location update the count of zombies
       let zombieObject = snapshot.val()
       if (zombieObject && Object.keys(zombieObject).length) {
-        let zombieCount = Object.keys(zombieObject).length
-        this.setState({ [location]: zombieCount })
+        let zombieIds = Object.keys(zombieObject)
+        let locationData = zombieIds.map((id, i) => zombieObject[id])
+        this.setState({ [location]: locationData })
       } else {
         //default to 0
-        this.setState({ [location]: 0 })
+        this.setState({ [location]: null })
       }
     })
   }
@@ -42,18 +43,12 @@ class App extends Component {
       <>
         <div className="App">
           <header className="App-header">
-            <ZombieForm
-              totalCount={this.state.zombieTotal}
-              warehouse={this.state.warehouse}
-              school={this.state.school}
-              church={this.state.church}
-            />
+            <ZombieForm />
+
+            <ZombieList location="Warehouse" zombies={this.state.warehouse} />
+            <ZombieList location="Church" zombies={this.state.church} />
+            <ZombieList location="School" zombies={this.state.school} />
           </header>
-        </div>
-        <div className="Zombie-lists-container">
-          <ZombieList location="Warehouse" />
-          <ZombieList location="Church" />
-          <ZombieList location="School" />
         </div>
       </>
     )
