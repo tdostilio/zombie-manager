@@ -1,24 +1,16 @@
-import React, { Component } from "react"
-import Menu from "@material-ui/core/Menu"
-import MenuItem from "@material-ui/core/MenuItem"
-import Icon from "@material-ui/core/Icon"
-import IconButton from "@material-ui/core/IconButton"
-
-import MoreIcon from "@material-ui/icons/MoreVert"
-
-const styles = {
-  iconButton: {
-    marginRight: "10px",
-    fontSize: "16px"
-  }
-}
+import React, { Component } from 'react'
+import Menu from '@material-ui/core/Menu'
+import MenuItem from '@material-ui/core/MenuItem'
+import IconButton from '@material-ui/core/IconButton'
+import MoreIcon from '@material-ui/icons/MoreVert'
+import ActionDialog from './ActionDialog'
 
 class ZombieActions extends Component {
   state = {
     open: false,
     anchorEl: null,
     moveDialog: false,
-    killDialog: false
+    killDialog: false,
   }
 
   handleClick = event => {
@@ -29,12 +21,21 @@ class ZombieActions extends Component {
     this.setState({ anchorEl: null })
   }
 
+  openDialog = type => {
+    this.setState({ [type]: true })
+  }
+
+  closeDialog = type => {
+    this.setState({ [type]: false })
+  }
+
   render() {
-    const { anchorEl } = this.state
+    const { zombie } = this.props
+    const { anchorEl, moveDialog } = this.state
     return (
       <>
         <IconButton
-          aria-owns={this.state.anchorEl ? "simple-menu" : null}
+          aria-owns={this.state.anchorEl ? 'simple-menu' : null}
           aria-haspopup="true"
           onClick={this.handleClick}
         >
@@ -46,13 +47,19 @@ class ZombieActions extends Component {
           open={Boolean(anchorEl)}
           onClose={this.handleClose}
         >
-          <MenuItem onClick={this.handleClose}>
+          <MenuItem onClick={() => this.openDialog('moveDialog')}>
             <span>Move Zombie</span>
           </MenuItem>
-          <MenuItem onClick={this.handleClose}>
+          <MenuItem onClick={() => this.openDialog('killDialog')}>
             <span>Kill Zombie</span>
           </MenuItem>
         </Menu>
+        <ActionDialog
+          open={moveDialog}
+          onClose={() => this.closeDialog('moveDialog')}
+          location={zombie.location}
+          zombie={zombie}
+        />
       </>
     )
   }

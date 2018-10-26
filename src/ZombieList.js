@@ -1,29 +1,29 @@
-import React, { Component } from "react"
-import List from "@material-ui/core/List"
-import ListItem from "@material-ui/core/ListItem"
-import ListItemIcon from "@material-ui/core/ListItemIcon"
-import ListItemText from "@material-ui/core/ListItemText"
-import MoreIcon from "@material-ui/icons/MoreVert"
-import Card from "@material-ui/core/Card"
-import Divider from "@material-ui/core/Divider"
-import ZombieActions from "./ZombieActions"
-import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction"
-import Avatar from "@material-ui/core/Avatar"
+import React, { Component } from 'react'
+import List from '@material-ui/core/List'
+import ListItem from '@material-ui/core/ListItem'
+import ListItemIcon from '@material-ui/core/ListItemIcon'
+import ListItemText from '@material-ui/core/ListItemText'
+import Card from '@material-ui/core/Card'
+import Divider from '@material-ui/core/Divider'
+import ZombieActions from './ZombieActions'
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction'
+import Avatar from '@material-ui/core/Avatar'
 
 class ZombieList extends Component {
   buildingSelector = location => {
-    if (location === "Church") {
-      return "/assets/church.png"
+    if (location === 'Church') {
+      return '/assets/church.png'
     }
-    if (location === "Warehouse") {
-      return "/assets/warehouse.png"
+    if (location === 'Warehouse') {
+      return '/assets/warehouse.png'
     }
-    if (location === "School") {
-      return "/assets/school.png"
+    if (location === 'School') {
+      return '/assets/school.png'
     }
   }
 
   render() {
+    const { zombies } = this.props
     return (
       <>
         <Card>
@@ -36,8 +36,8 @@ class ZombieList extends Component {
               <ListItemText primary={this.props.location} />
             </ListItem>
             <Divider />
-            {this.props.zombies ? (
-              Object.keys(this.props.zombies).map((zombId, key) => {
+            {zombies ? (
+              Object.keys(zombies).map((zombId, key) => {
                 return (
                   <>
                     <ListItem
@@ -49,15 +49,15 @@ class ZombieList extends Component {
                       <Avatar
                         alt="zombie"
                         src={
-                          this.props.zombies[zombId].gender === "male"
-                            ? "/assets/maleHeadshot.png"
-                            : "/assets/femaleHeadshot.png"
+                          zombies[zombId].gender === 'male'
+                            ? '/assets/maleHeadshot.png'
+                            : '/assets/femaleHeadshot.png'
                         }
                       />
-                      <ListItemText primary={this.props.zombies[zombId].name} />
+                      <ListItemText primary={zombies[zombId].name} />
                       <ListItemSecondaryAction>
                         <ListItemIcon>
-                          <ZombieActions />
+                          <ZombieActions zombie={zombies[zombId]} />
                         </ListItemIcon>
                       </ListItemSecondaryAction>
                     </ListItem>

@@ -1,13 +1,13 @@
-import * as firebase from "firebase"
-import "firebase/firestore"
+import * as firebase from 'firebase'
+import 'firebase/firestore'
 
 const config = {
-  apiKey: "AIzaSyCiUAnK_E4ENPPSa7tj4t3Iuv77jw7tF0Y",
-  authDomain: "zombie-manager.firebaseapp.com",
-  databaseURL: "https://zombie-manager.firebaseio.com",
-  projectId: "zombie-manager",
-  storageBucket: "zombie-manager.appspot.com",
-  messagingSenderId: "771011266484"
+  apiKey: 'AIzaSyCiUAnK_E4ENPPSa7tj4t3Iuv77jw7tF0Y',
+  authDomain: 'zombie-manager.firebaseapp.com',
+  databaseURL: 'https://zombie-manager.firebaseio.com',
+  projectId: 'zombie-manager',
+  storageBucket: 'zombie-manager.appspot.com',
+  messagingSenderId: '771011266484',
 }
 
 const fire = firebase.initializeApp(config)
@@ -15,7 +15,7 @@ const fire = firebase.initializeApp(config)
 class FirebaseClient {
   constructor() {
     Object.assign(this, {
-      database: fire.database()
+      database: fire.database(),
     })
   }
 
@@ -27,34 +27,34 @@ class FirebaseClient {
       id,
       name: name,
       gender: gender,
-      location
+      location,
     })
   }
 
   deleteZombie = async (location, zombId) => {
     //delete zombie logic
-    await this.database.ref(`${location}/${zombId}/`).remove()
+    await this.database.ref(`${location}/zombies/${zombId}/`).remove()
   }
 
-  moveZombie = async (newLocation, oldLocation, name, gender, id) => {
+  moveZombie = async (newLocation, zombie) => {
     //create zombie in new location
-    this.zombieId = await this.database.ref(`${newLocation}/zombies`)
+    this.zombieId = await this.database.ref(
+      `${newLocation}/zombies/${zombie.id}`
+    )
     this.zombieId.set({
-      [id]: {
-        id: id,
-        name: name,
-        gender: gender,
-        location: newLocation
-      }
+      id: zombie.id,
+      name: zombie.name,
+      gender: zombie.gender,
+      location: newLocation,
     })
     //delete zombie from old location
-    this.deleteZombie(oldLocation, id)
+    this.deleteZombie(zombie.location, zombie.id)
   }
 
   locationRef = location => this.database.ref(`${location}/zombies`)
 
   countTotalZombies = async () => {
-    await this.database.ref("zombieTotal").on("value", snapshot => {
+    await this.database.ref('zombieTotal').on('value', snapshot => {
       return snapshot.val()
     })
   }
