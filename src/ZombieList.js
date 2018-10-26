@@ -36,7 +36,7 @@ class ZombieList extends Component {
                         alt="zombie"
                         src={
                           this.props.zombies[zombId].gender === "male"
-                            ? "/assets/zombieMaleHeadshot.png"
+                            ? "/assets/maleHeadshot.png"
                             : "/assets/femaleHeadshot.png"
                         }
                       />

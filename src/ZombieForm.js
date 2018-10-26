@@ -83,7 +83,7 @@ class ZombieForm extends Component {
               )
             }
           >
-            Store Captured Zombie
+            Store Zombie
           </Button>
         </Card>
       </>
