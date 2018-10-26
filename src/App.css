@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  background-color: #282c34;
 }
 
 .App-logo {
@@ -20,6 +21,13 @@
 
 .App-link {
   color: #61dafb;
+}
+
+.Zombie-lists-container {
+  width: 1000px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
 @keyframes App-logo-spin {

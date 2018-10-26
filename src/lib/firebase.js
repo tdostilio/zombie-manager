@@ -26,44 +26,36 @@ class FirebaseClient {
     this.zombieId.set({
       id,
       name: name,
-      gender: gender
+      gender: gender,
+      location
     })
   }
 
-  countZombies = async location => {
-    this.database.ref(`${location}`).on("value", async snapshot => {
-      //count the number of zombies and update the count
-      let zombieObject = await snapshot.val()
-      console.log(zombieObject)
-      let zombieCount = Object.keys(zombieObject).length
-      console.log(zombieCount)
-      return zombieCount
-    })
-  }
-
-  countTotalZombies = async () => {
-    await this.database.ref("zombieTotal").on("value", snapshot => {
-      return snapshot.val()
-    })
-  }
-
-  moveZombie = async zombId => {
-    //move zombie logic
-  }
-
-  deleteZombie = async (zombId, location) => {
+  deleteZombie = async (location, zombId) => {
     //delete zombie logic
     await this.database.ref(`${location}/${zombId}/`).remove()
   }
 
-  deleteQuestion = async questionId => {
-    await this.database.ref(`questions/${questionId}/`).remove()
+  moveZombie = async (newLocation, oldLocation, name, gender, id) => {
+    //create zombie in new location
+    this.zombieId = await this.database.ref(`${newLocation}/zombies`)
+    this.zombieId.set({
+      [id]: {
+        id: id,
+        name: name,
+        gender: gender,
+        location: newLocation
+      }
+    })
+    //delete zombie from old location
+    this.deleteZombie(oldLocation, id)
   }
 
-  updateAnsweredQuestions = async (questionId, choice) => {
-    this.answered = this.database.ref(`users/${this.userid}/answered/`)
-    await this.answered.update({
-      [questionId]: choice
+  locationRef = location => this.database.ref(`${location}/zombies`)
+
+  countTotalZombies = async () => {
+    await this.database.ref("zombieTotal").on("value", snapshot => {
+      return snapshot.val()
     })
   }
 }

@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import ZombieForm from "./ZombieForm"
+import ZombieList from "./ZombieList"
 import Fire from "./lib/firebase"
 import "./App.css"
 
@@ -15,31 +16,46 @@ class App extends Component {
   }
 
   updateCount = async location => {
-    console.log("calling await")
-    let n = await window.fire.countZombies(location)
-    console.log(`total number of zombs at ${location} is ${n}`)
-    this.setState({ [location]: n })
+    //create a listener for changes to the location
+    window.fire.locationRef(location).on("value", snapshot => {
+      //when there is a change to the location update the count of zombies
+      let zombieObject = snapshot.val()
+      if (zombieObject && Object.keys(zombieObject).length) {
+        let zombieCount = Object.keys(zombieObject).length
+        this.setState({ [location]: zombieCount })
+      } else {
+        //default to 0
+        this.setState({ [location]: 0 })
+      }
+    })
   }
 
-  componentDidMount = async () => {
+  componentDidMount() {
+    //attach the listeners for all 3 locations
     this.updateCount("school")
     this.updateCount("warehouse")
     this.updateCount("church")
-    //make call to get number of zombies
   }
 
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <ZombieForm
-            totalCount={this.state.zombieTotal}
-            warehouse={this.state.warehouse}
-            school={this.state.school}
-            church={this.state.church}
-          />
-        </header>
-      </div>
+      <>
+        <div className="App">
+          <header className="App-header">
+            <ZombieForm
+              totalCount={this.state.zombieTotal}
+              warehouse={this.state.warehouse}
+              school={this.state.school}
+              church={this.state.church}
+            />
+          </header>
+        </div>
+        <div className="Zombie-lists-container">
+          <ZombieList location="Warehouse" />
+          <ZombieList location="Church" />
+          <ZombieList location="School" />
+        </div>
+      </>
     )
   }
 }
