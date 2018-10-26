@@ -10,15 +10,29 @@ import ZombieActions from "./ZombieActions"
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction"
 import Avatar from "@material-ui/core/Avatar"
 
-const buildings = []
-
 class ZombieList extends Component {
+  buildingSelector = location => {
+    if (location === "Church") {
+      return "/assets/church.png"
+    }
+    if (location === "Warehouse") {
+      return "/assets/warehouse.png"
+    }
+    if (location === "School") {
+      return "/assets/school.png"
+    }
+  }
+
   render() {
     return (
       <>
         <Card>
           <List component="nav">
             <ListItem className="location-header">
+              <Avatar
+                alt="location"
+                src={this.buildingSelector(this.props.location)}
+              />
               <ListItemText primary={this.props.location} />
             </ListItem>
             <Divider />
