@@ -1,11 +1,7 @@
 import React, { Component } from "react"
 import Button from "@material-ui/core/Button"
 import Card from "@material-ui/core/Card"
-import CardActions from "@material-ui/core/CardActions"
-import CardContent from "@material-ui/core/CardContent"
 import TextField from "@material-ui/core/TextField"
-import Typography from "@material-ui/core/Typography"
-import Select from "@material-ui/core/Select"
 import MenuItem from "@material-ui/core/MenuItem"
 
 class ZombieForm extends Component {
@@ -33,7 +29,7 @@ class ZombieForm extends Component {
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
-            width: 600,
+            width: 200,
             height: 600,
             padding: "32px 48px",
             margin: 64

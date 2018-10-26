@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import ZombieForm from "./ZombieForm"
-import ZombieList from "./ZombieList"
+import ZombieDashboard from "./ZombieDashboard"
 import Fire from "./lib/firebase"
 import "./App.css"
 
@@ -44,10 +44,11 @@ class App extends Component {
         <div className="App">
           <header className="App-header">
             <ZombieForm />
-
-            <ZombieList location="Warehouse" zombies={this.state.warehouse} />
-            <ZombieList location="Church" zombies={this.state.church} />
-            <ZombieList location="School" zombies={this.state.school} />
+            <ZombieDashboard
+              warehouse={this.state.warehouse}
+              school={this.state.school}
+              church={this.state.church}
+            />
           </header>
         </div>
       </>
