@@ -1,13 +1,13 @@
-import * as firebase from 'firebase'
-import 'firebase/firestore'
+import * as firebase from "firebase"
+import "firebase/firestore"
 
 const config = {
-  apiKey: 'AIzaSyCiUAnK_E4ENPPSa7tj4t3Iuv77jw7tF0Y',
-  authDomain: 'zombie-manager.firebaseapp.com',
-  databaseURL: 'https://zombie-manager.firebaseio.com',
-  projectId: 'zombie-manager',
-  storageBucket: 'zombie-manager.appspot.com',
-  messagingSenderId: '771011266484',
+  apiKey: "AIzaSyCiUAnK_E4ENPPSa7tj4t3Iuv77jw7tF0Y",
+  authDomain: "zombie-manager.firebaseapp.com",
+  databaseURL: "https://zombie-manager.firebaseio.com",
+  projectId: "zombie-manager",
+  storageBucket: "zombie-manager.appspot.com",
+  messagingSenderId: "771011266484"
 }
 
 const fire = firebase.initializeApp(config)
@@ -15,24 +15,25 @@ const fire = firebase.initializeApp(config)
 class FirebaseClient {
   constructor() {
     Object.assign(this, {
-      database: fire.database(),
+      database: fire.database()
     })
   }
 
-  createZombie = async (id, location, name, gender) => {
+  createZombie = async (location, name, gender) => {
     //create zombie logic
-    await this.database.ref(`${location}/zombies`).set({
-      [id]: {
-        name: name,
-        gender: gender,
-      },
+    this.zombieId = await this.database.ref(`${location}/zombies`).push()
+    let id = this.zombieId.getKey()
+    this.zombieId.set({
+      id,
+      name: name,
+      gender: gender
     })
   }
 
   countZombies = async location => {
-    await this.database.ref(`${location}`).on('value', snapshot => {
+    this.database.ref(`${location}`).on("value", async snapshot => {
       //count the number of zombies and update the count
-      let zombieObject = snapshot.val()
+      let zombieObject = await snapshot.val()
       console.log(zombieObject)
       let zombieCount = Object.keys(zombieObject).length
       console.log(zombieCount)
@@ -41,7 +42,7 @@ class FirebaseClient {
   }
 
   countTotalZombies = async () => {
-    await this.database.ref('zombieTotal').on('value', snapshot => {
+    await this.database.ref("zombieTotal").on("value", snapshot => {
       return snapshot.val()
     })
   }
@@ -62,7 +63,7 @@ class FirebaseClient {
   updateAnsweredQuestions = async (questionId, choice) => {
     this.answered = this.database.ref(`users/${this.userid}/answered/`)
     await this.answered.update({
-      [questionId]: choice,
+      [questionId]: choice
     })
   }
 }

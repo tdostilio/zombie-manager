@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
-import ZombieForm from './ZombieForm'
-import Fire from './lib/firebase'
-import './App.css'
+import React, { Component } from "react"
+import ZombieForm from "./ZombieForm"
+import Fire from "./lib/firebase"
+import "./App.css"
 
 //make global firebase client available -- only global in app
 window.fire = new Fire()
@@ -11,20 +11,20 @@ class App extends Component {
     zombieTotal: 1,
     school: 0,
     church: 0,
-    warehouse: 0,
+    warehouse: 0
   }
 
   updateCount = async location => {
-    console.log('calling await')
-    console.log(await window.fire.countZombies(location))
-    // console.log(`total number of zombs at ${location} is ${n}`)
-    // this.setState({ [location]: n })
+    console.log("calling await")
+    let n = await window.fire.countZombies(location)
+    console.log(`total number of zombs at ${location} is ${n}`)
+    this.setState({ [location]: n })
   }
 
   componentDidMount = async () => {
-    this.updateCount('school')
-    this.updateCount('warehouse')
-    this.updateCount('church')
+    this.updateCount("school")
+    this.updateCount("warehouse")
+    this.updateCount("church")
     //make call to get number of zombies
   }
 
@@ -38,14 +38,6 @@ class App extends Component {
             school={this.state.school}
             church={this.state.church}
           />
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
         </header>
       </div>
     )
