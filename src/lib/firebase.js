@@ -34,7 +34,9 @@ class FirebaseClient {
       //count the number of zombies and update the count
       let zombieObject = snapshot.val()
       console.log(zombieObject)
-      return snapshot.val()
+      let zombieCount = Object.keys(zombieObject).length
+      console.log(zombieCount)
+      return zombieCount
     })
   }
 

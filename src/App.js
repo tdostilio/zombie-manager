@@ -14,12 +14,17 @@ class App extends Component {
     warehouse: 0,
   }
 
-  updateCount
+  updateCount = async location => {
+    console.log('calling await')
+    console.log(await window.fire.countZombies(location))
+    // console.log(`total number of zombs at ${location} is ${n}`)
+    // this.setState({ [location]: n })
+  }
 
-  componentDidMount() {
-    window.fire.countZombies('school')
-    window.fire.countZombies('warehouse')
-    window.fire.countZombies('church')
+  componentDidMount = async () => {
+    this.updateCount('school')
+    this.updateCount('warehouse')
+    this.updateCount('church')
     //make call to get number of zombies
   }
 
@@ -27,7 +32,12 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <ZombieForm totalCount={this.state.zombieTotal} />
+          <ZombieForm
+            totalCount={this.state.zombieTotal}
+            warehouse={this.state.warehouse}
+            school={this.state.school}
+            church={this.state.church}
+          />
           <a
             className="App-link"
             href="https://reactjs.org"

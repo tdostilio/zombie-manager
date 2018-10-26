@@ -85,6 +85,9 @@ class ZombieForm extends Component {
         >
           Store Captured Zombie
         </Button>
+        <Typography>{`Warehouse: ${this.props.warehouse}`}</Typography>
+        <Typography>{`Church: ${this.props.church}`}</Typography>
+        <Typography>{`School: ${this.props.school}`}</Typography>
       </Card>
     )
   }
