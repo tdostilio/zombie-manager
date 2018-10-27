@@ -40,13 +40,23 @@ class ActionDialog extends Component {
     return locations
   }
 
+  actionButton = zombie => {
+    if (this.props.move) {
+      window.fire.moveZombie(this.state.location, zombie)
+    }
+    if (this.props.kill) {
+      window.fire.deleteZombie(zombie.location, zombie.id)
+    }
+    this.props.onClose()
+  }
+
   render() {
     const { location } = this.state
     const { open, onClose, zombie } = this.props
     return (
       <Dialog open={open} onClose={onClose}>
         <DialogTitle style={{ display: 'flex', justifyContent: 'center' }}>
-          {`Move ${zombie.name}?`}
+          {`${this.props.move ? 'Move' : 'Kill'} ${zombie.name}?`}
         </DialogTitle>
 
         <DialogContent style={styles.dialogContent}>
@@ -59,29 +69,29 @@ class ActionDialog extends Component {
             }
             style={{ height: 128, width: 128 }}
           />
-          <TextField
-            key="location"
-            select
-            autoFocus
-            // fullWidth
-            label="To Where"
-            value={location}
-            onChange={this.handleChange('location')}
-            style={{ margin: 8, minWidth: 150 }}
-          >
-            {this.filterLocations().map((availableLocation, key) => (
-              <MenuItem value={availableLocation} key={key}>
-                {availableLocation}
-              </MenuItem>
-            ))}
-          </TextField>
+          {this.props.move ? (
+            <TextField
+              key="location"
+              select
+              autoFocus
+              // fullWidth
+              label="To Where"
+              value={location}
+              onChange={this.handleChange('location')}
+              style={{ margin: 8, minWidth: 150 }}
+            >
+              {this.filterLocations().map((availableLocation, key) => (
+                <MenuItem value={availableLocation} key={key}>
+                  {availableLocation}
+                </MenuItem>
+              ))}
+            </TextField>
+          ) : null}
         </DialogContent>
 
         <DialogActions
           style={{
             display: 'flex',
-            // width: '100%',
-            // margin: '0px 10px 0px 10px',
             justifyContent: 'space-between',
           }}
         >
@@ -89,13 +99,11 @@ class ActionDialog extends Component {
             Cancel
           </Button>
           <Button
-            onClick={() =>
-              window.fire.moveZombie(this.state.location, this.props.zombie)
-            }
+            onClick={() => this.actionButton(zombie)}
             variant="contained"
-            color="primary"
+            color={this.props.move ? 'primary' : 'secondary'}
           >
-            Move
+            {this.props.move ? 'Move' : 'Kill'}
           </Button>
         </DialogActions>
       </Dialog>

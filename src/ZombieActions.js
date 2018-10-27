@@ -25,13 +25,13 @@ class ZombieActions extends Component {
     this.setState({ [type]: true })
   }
 
-  closeDialog = type => {
-    this.setState({ [type]: false })
+  closeDialog = () => {
+    this.setState({ moveDialog: false, killDialog: false })
   }
 
   render() {
     const { zombie } = this.props
-    const { anchorEl, moveDialog } = this.state
+    const { anchorEl, moveDialog, killDialog } = this.state
     return (
       <>
         <IconButton
@@ -55,10 +55,12 @@ class ZombieActions extends Component {
           </MenuItem>
         </Menu>
         <ActionDialog
-          open={moveDialog}
-          onClose={() => this.closeDialog('moveDialog')}
+          open={moveDialog || killDialog}
+          onClose={this.closeDialog}
           location={zombie.location}
           zombie={zombie}
+          kill={killDialog}
+          move={moveDialog}
         />
       </>
     )
