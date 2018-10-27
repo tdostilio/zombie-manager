@@ -9,10 +9,12 @@ import MenuItem from '@material-ui/core/MenuItem'
 import Avatar from '@material-ui/core/Avatar'
 
 const styles = {
-  dialogContainer: {
+  dialogContent: {
     display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
     justifyContent: 'center',
-    width: 400,
+    minWidth: 300,
   },
 }
 
@@ -42,12 +44,12 @@ class ActionDialog extends Component {
     const { location } = this.state
     const { open, onClose, zombie } = this.props
     return (
-      <Dialog open={open} onClose={onClose} style={styles.dialogContainer}>
+      <Dialog open={open} onClose={onClose}>
         <DialogTitle style={{ display: 'flex', justifyContent: 'center' }}>
           {`Move ${zombie.name}?`}
         </DialogTitle>
 
-        <DialogContent>
+        <DialogContent style={styles.dialogContent}>
           <Avatar
             alt="zombie"
             src={
@@ -61,11 +63,11 @@ class ActionDialog extends Component {
             key="location"
             select
             autoFocus
-            fullWidth
+            // fullWidth
             label="To Where"
             value={location}
             onChange={this.handleChange('location')}
-            style={{ margin: 8 }}
+            style={{ margin: 8, minWidth: 150 }}
           >
             {this.filterLocations().map((availableLocation, key) => (
               <MenuItem value={availableLocation} key={key}>
@@ -75,12 +77,23 @@ class ActionDialog extends Component {
           </TextField>
         </DialogContent>
 
-        <DialogActions>
-          <Button onClick={onClose}>Close</Button>
+        <DialogActions
+          style={{
+            display: 'flex',
+            // width: '100%',
+            // margin: '0px 10px 0px 10px',
+            justifyContent: 'space-between',
+          }}
+        >
+          <Button onClick={onClose} color="default">
+            Cancel
+          </Button>
           <Button
             onClick={() =>
               window.fire.moveZombie(this.state.location, this.props.zombie)
             }
+            variant="contained"
+            color="primary"
           >
             Move
           </Button>

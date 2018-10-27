@@ -29,7 +29,7 @@ class ZombieForm extends Component {
           style={{
             display: 'flex',
             flexDirection: 'column',
-            justifyContent: 'space-between',
+            justifyContent: 'space-around',
             width: 200,
             height: 600,
             padding: '32px 48px',
