@@ -9,6 +9,13 @@ import ZombieActions from './ZombieActions'
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction'
 import Avatar from '@material-ui/core/Avatar'
 
+const styles = {
+  avatars: {
+    height: 64,
+    width: 64,
+  },
+}
+
 class ZombieList extends Component {
   buildingSelector = location => {
     if (location === 'Church') {
@@ -31,9 +38,13 @@ class ZombieList extends Component {
             <ListItem className="location-header">
               <Avatar
                 alt="location"
+                style={styles.avatars}
                 src={this.buildingSelector(this.props.location)}
               />
-              <ListItemText primary={this.props.location} />
+              <ListItemText
+                primary={this.props.location}
+                style={{ fontWeight: 'bold' }}
+              />
             </ListItem>
             <Divider />
             {zombies ? (
@@ -47,6 +58,7 @@ class ZombieList extends Component {
                       className="location-list"
                     >
                       <Avatar
+                        style={styles.avatars}
                         alt="zombie"
                         src={
                           zombies[zombId].gender === 'male'
