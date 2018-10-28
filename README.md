@@ -1,3 +1,4 @@
+![Dashboard Image](./public/assets/dashboardScreenshot.png)
 #To use:
 
 1. Download this repository
@@ -7,6 +8,5 @@
 
 #made with Create React App, Firebase Realtime DB and Material-UI
 
-##screenshots:
-![Dashboard Image](./public/assets/dashboardScreen.png)
-![Database Image](./public/assets/databaseScreenshot.png)
+##Other Screenshots:
+![Database Image](./public/assets/databaseScreeshot.png)
