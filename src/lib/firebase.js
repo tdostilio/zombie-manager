@@ -1,7 +1,7 @@
 import * as firebase from 'firebase'
 import 'firebase/firestore'
 
-//TODO - move keys into .env file after this project has been reviewed
+//TODO - move keys into .env file and add to gitignore after this project has been reviewed
 const config = {
   apiKey: 'AIzaSyCiUAnK_E4ENPPSa7tj4t3Iuv77jw7tF0Y',
   authDomain: 'zombie-manager.firebaseapp.com',
