@@ -5,6 +5,7 @@ import TextField from '@material-ui/core/TextField'
 import MenuItem from '@material-ui/core/MenuItem'
 import { Typography } from '@material-ui/core'
 
+//the form to create a zombie
 class ZombieForm extends Component {
   state = {
     name: '',

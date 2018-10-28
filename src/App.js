@@ -14,8 +14,8 @@ class App extends Component {
     warehouse: null,
   }
 
+  //creates a listener for changes to the location
   updateCount = async location => {
-    //create a listener for changes to the location
     window.fire.locationRef(location).on('value', snapshot => {
       //when there is a change to the location update the count of zombies
       let zombieObject = snapshot.val()
@@ -30,8 +30,8 @@ class App extends Component {
     })
   }
 
+  //attach database listeners for all 3 locations and update on change
   componentDidMount() {
-    //attach the listeners for all 3 locations
     this.updateCount('school')
     this.updateCount('warehouse')
     this.updateCount('church')

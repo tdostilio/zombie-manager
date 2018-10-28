@@ -1,6 +1,7 @@
-import React, { Component } from "react"
-import ZombieList from "./ZombieList"
+import React, { Component } from 'react'
+import ZombieList from './ZombieList'
 
+//the main display component -- contains the 3 location components
 class ZombieDashboard extends Component {
   render() {
     return (

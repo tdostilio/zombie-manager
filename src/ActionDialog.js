@@ -18,6 +18,7 @@ const styles = {
   },
 }
 
+//ActionDialog is the dynamic modal that asks the user if they want to kill or move the zombie
 class ActionDialog extends Component {
   state = {
     location: this.props.location,

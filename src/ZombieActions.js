@@ -5,6 +5,7 @@ import IconButton from '@material-ui/core/IconButton'
 import MoreIcon from '@material-ui/icons/MoreVert'
 import ActionDialog from './ActionDialog'
 
+//ZombieActions is the button that opens up a small menu to either kill or move zombie
 class ZombieActions extends Component {
   state = {
     open: false,

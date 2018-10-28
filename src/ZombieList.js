@@ -16,6 +16,7 @@ const styles = {
   },
 }
 
+//the reusable list component for display the zombie populace at a given location
 class ZombieList extends Component {
   buildingSelector = location => {
     if (location === 'Church') {
