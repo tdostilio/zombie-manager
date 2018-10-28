@@ -39,6 +39,8 @@ class ZombieForm extends Component {
           <Typography
             variant="h4"
             style={{
+              fontFamily: 'Creepster, cursive',
+              fontSize: '2em',
               fontWeight: 'bold',
               color: 'forestgreen',
               textShadow: '1px 1px lightgray',
