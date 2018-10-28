@@ -1,4 +1,4 @@
-![Dashboard Image](./public/assets/dashboardScreenshot.png)
+![Dashboard Image](./public/assets/dashboard.png)
 #To use:
 
 1. Download this repository
