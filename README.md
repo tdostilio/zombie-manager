@@ -9,4 +9,4 @@
 #made with Create React App, Firebase Realtime DB and Material-UI
 
 ##Other Screenshots:
-![Database Image](./public/assets/databaseScreeshot.png)
+![Database Image](./public/assets/databaseScreenshot.png)
