@@ -43,7 +43,7 @@ class ZombieList extends Component {
               />
               <ListItemText
                 primary={this.props.location}
-                style={{ fontWeight: 'bold' }}
+                style={{ fontSize: '24px' }}
               />
             </ListItem>
             <Divider />
