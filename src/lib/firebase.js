@@ -1,22 +1,14 @@
-import * as firebase from 'firebase'
-import 'firebase/firestore'
+import * as firebase from "firebase"
+import "firebase/firestore"
 
 //TODO - move keys into .env file and add to gitignore after this project has been reviewed
-const config = {
-  apiKey: 'AIzaSyCiUAnK_E4ENPPSa7tj4t3Iuv77jw7tF0Y',
-  authDomain: 'zombie-manager.firebaseapp.com',
-  databaseURL: 'https://zombie-manager.firebaseio.com',
-  projectId: 'zombie-manager',
-  storageBucket: 'zombie-manager.appspot.com',
-  messagingSenderId: '771011266484',
-}
 
 const fire = firebase.initializeApp(config)
 
 class FirebaseClient {
   constructor() {
     Object.assign(this, {
-      database: fire.database(),
+      database: fire.database()
     })
   }
 
@@ -28,7 +20,7 @@ class FirebaseClient {
       id,
       name: name,
       gender: gender,
-      location,
+      location
     })
   }
 
@@ -46,7 +38,7 @@ class FirebaseClient {
       id: zombie.id,
       name: zombie.name,
       gender: zombie.gender,
-      location: newLocation,
+      location: newLocation
     })
     //delete zombie from old location
     this.deleteZombie(zombie.location, zombie.id)
@@ -55,7 +47,7 @@ class FirebaseClient {
   locationRef = location => this.database.ref(`${location}/zombies`)
 
   countTotalZombies = async () => {
-    await this.database.ref('zombieTotal').on('value', snapshot => {
+    await this.database.ref("zombieTotal").on("value", snapshot => {
       return snapshot.val()
     })
   }
