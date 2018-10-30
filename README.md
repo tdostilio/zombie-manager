@@ -7,6 +7,3 @@
 4. Open up localhost:3000 in a browser
 
 #made with Create React App, Firebase Realtime DB and Material-UI
-
-##Database Screenshot:  
-![Database Image](./public/assets/databaseScreenshot.png)

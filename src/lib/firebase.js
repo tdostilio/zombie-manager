@@ -1,7 +1,9 @@
 import * as firebase from "firebase"
 import "firebase/firestore"
 
-//TODO - move keys into .env file and add to gitignore after this project has been reviewed
+const config = {
+  //put config information here
+}
 
 const fire = firebase.initializeApp(config)
 
