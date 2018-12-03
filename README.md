@@ -6,7 +6,7 @@
 3. Create a .env file in the root of the repository
 4. Add firebase credentials in .env file
 example:
-      ```
+```
 REACT_APP_API_KEY=<apiKey>
 REACT_APP_AUTH_DOMAIN=<domain>
 REACT_APP_DB_URL=<databaseUrl>
