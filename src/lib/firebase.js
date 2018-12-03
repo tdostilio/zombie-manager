@@ -1,9 +1,9 @@
 import * as firebase from "firebase"
 import "firebase/firestore"
+require("dotenv").config()
 
-const config = {
-  //put config information here
-}
+//put firebase config information here
+const config = process.env.FB_CONFIG
 
 const fire = firebase.initializeApp(config)
 

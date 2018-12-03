@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
-import Menu from '@material-ui/core/Menu'
-import MenuItem from '@material-ui/core/MenuItem'
-import IconButton from '@material-ui/core/IconButton'
-import MoreIcon from '@material-ui/icons/MoreVert'
-import ActionDialog from './ActionDialog'
+import React, { Component } from "react"
+import Menu from "@material-ui/core/Menu"
+import MenuItem from "@material-ui/core/MenuItem"
+import IconButton from "@material-ui/core/IconButton"
+import MoreIcon from "@material-ui/icons/MoreVert"
+import ActionDialog from "./ActionDialog"
 
 //ZombieActions is the button that opens up a small menu to either kill or move zombie
 class ZombieActions extends Component {
@@ -11,7 +11,7 @@ class ZombieActions extends Component {
     open: false,
     anchorEl: null,
     moveDialog: false,
-    killDialog: false,
+    killDialog: false
   }
 
   handleClick = event => {
@@ -36,7 +36,7 @@ class ZombieActions extends Component {
     return (
       <>
         <IconButton
-          aria-owns={this.state.anchorEl ? 'simple-menu' : null}
+          aria-owns={this.state.anchorEl ? "simple-menu" : null}
           aria-haspopup="true"
           onClick={this.handleClick}
         >
@@ -48,10 +48,10 @@ class ZombieActions extends Component {
           open={Boolean(anchorEl)}
           onClose={this.handleClose}
         >
-          <MenuItem onClick={() => this.openDialog('moveDialog')}>
+          <MenuItem onClick={() => this.openDialog("moveDialog")}>
             <span>Move Zombie</span>
           </MenuItem>
-          <MenuItem onClick={() => this.openDialog('killDialog')}>
+          <MenuItem onClick={() => this.openDialog("killDialog")}>
             <span>Kill Zombie</span>
           </MenuItem>
         </Menu>
